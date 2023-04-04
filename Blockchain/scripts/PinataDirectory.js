@@ -35,8 +35,8 @@ const PINATA_API_PINFILETOIPFS = 'https://api.pinata.cloud/pinning/pinFileToIPFS
 (async () => {
   try {
     const OUTPUT_PATH = './output/folder-cid.json';
-    const FOLDER_NAME = 'nft_valinity_tu_as_mis_le_kimono'; // Display name of folder in Pinata
-    const FOLDER_PATH = '../../Backend/json'; // Folder to be uploaded
+    const FOLDER_NAME = 'nft_valinity_Test_Image'; // Display name of folder in Pinata
+    const FOLDER_PATH = '../../Backend/Images'; // Folder to be uploaded
     const { files } = await read(FOLDER_PATH);
     if ((files && files.length) <= 0) {
       log(`No files were found in folder '${FOLDER_PATH}'`);
@@ -67,7 +67,7 @@ const PINATA_API_PINFILETOIPFS = 'https://api.pinata.cloud/pinning/pinFileToIPFS
         pinata_secret_api_key: PINATA_API_SECRET,
       },
     });
-    log(`'${FOLDER_PATH}' upload complete; CID: ${cid}`);
+    log(`'${FOLDER_PATH}' upload complete; CID: ${cid}, link to folder: https://mekaape.mypinata.cloud/ipfs/${cid}`);
     outputJsonSync(OUTPUT_PATH, { [FOLDER_NAME]: cid });
   } catch (err) {
     error(err);
