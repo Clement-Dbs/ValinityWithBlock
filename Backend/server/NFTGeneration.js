@@ -25,11 +25,11 @@ exports.generate = function () {
                         .print(font, 2, 0, `ID: ${item.ID}`)
                         .print(font, 2, 250, `Promo: ${item.Promo}`)
                         .print(font, 2, 300, `Spe: ${item.Spe}`)
-                        .write(`Images/${item.hash}.png`);
+                        .write(`Images/${item.ID}.png`);
+                        
                 });
             });
-            console.log(`Image ${item.hash} generated`);
+            console.log(`Image ${item.ID} generated`);
         });
     });
 };
-
