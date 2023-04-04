@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 
 contract Valinity is Ownable, ERC721Enumerable{
@@ -37,6 +38,7 @@ contract Valinity is Ownable, ERC721Enumerable{
 //     require(msg.sender == owner(), "Only the contract owner can perform this action");
 //      _;
 //     }
+
     
 function mint(uint256 _mintAmount) public payable onlyOwner {
     require(!paused, "the contract is paused");
@@ -100,6 +102,22 @@ function mint(uint256 _mintAmount) public payable onlyOwner {
       : "";
   }
 //only owner
+
+ function transferFrom(address from, address to, uint256 tokenId) public virtual override(ERC721, IERC721) onlyOwner {
+        // Bypass any checks, and directly perform the transfer
+        _transfer(from, to, tokenId);
+    }
+  function safeTransferFrom(address from, address to, uint256 tokenId) public virtual override(ERC721, IERC721) {
+    revert("Transfers are not allowed.");
+}
+
+  function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory _data) public virtual override(ERC721, IERC721) {
+    revert("Transfers are not allowed.");
+}
+
+  function approve(address to, uint256 tokenId) public virtual override(ERC721, IERC721) {
+    revert("Transfers are not allowed.");
+} 
 
   function setNftPerAddressLimit(uint256 _limit) public onlyOwner {
     nftPerAddressLimit = _limit;
