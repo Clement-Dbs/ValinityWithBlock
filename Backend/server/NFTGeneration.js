@@ -23,17 +23,12 @@ exports.generate = function () {
                     image
                         .composite(fond, 0, 0) // Ajouter le fond à l'image
                         .print(font, 2, 0, `ID: ${item.ID}`)
-                        .print(font, 2, 50, `Nom: ${item.Nom}`)
-                        .print(font, 2, 100, `Prenom: ${item.Prenom}`)
-                        .print(font, 2, 150, `DatedeNaissance: ${item.DatedeNaissance}`)
-                        .print(font, 2, 200, `NINE: ${item.NINE}`)
                         .print(font, 2, 250, `Promo: ${item.Promo}`)
                         .print(font, 2, 300, `Spe: ${item.Spe}`)
-                        .write(`Images/${item.NINE}.png`);
-                        
+                        .write(`Images/${item.hash}.png`);
                 });
             });
-            console.log(`Image ${item.NINE} generated`);
+            console.log(`Image ${item.hash} generated`);
         });
     });
 };
