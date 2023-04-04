@@ -32,16 +32,16 @@ fs.readFile("results/ece.json", "utf-8", (err, content) => {
         
         const data = [];
         
-        for (let i = 1; i < lines.length; i++) {
+        for (let i = 1; i < lines.length-1; i++) {
             const columns = lines[i].split(";").map((column) => {
                 return column.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ0-9\/\-]/g, "");
             });
 
             // Modifier la valeur de la colonne "Nom" pour qu'elle soit en majuscules
-            const columnIndex = columnNames.indexOf("Nom");
-            if (columnIndex !== -1) {
-                columns[columnIndex] = columns[columnIndex].toUpperCase();
-            }
+            // const columnIndex = columnNames.indexOf("Nom");
+            // if (columnIndex != -1) {
+            //     columns[columnIndex] = columns[columnIndex].toUpperCase();
+            // }
         
             // Sélectionner les colonnes à utiliser pour le hashage
             const selectedColumns = [columnNames.indexOf("Nom"), columnNames.indexOf("Prenom"), columnNames.indexOf("Promo"), columnNames.indexOf("Spe")];
